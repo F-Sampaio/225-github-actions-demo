@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        test_names: ${{ fromJSON(github.event.inputs.test_names)}
+        test_names: ${{ fromJSON(github.event.inputs.test_names) }}
     
     steps:
       - name: test
