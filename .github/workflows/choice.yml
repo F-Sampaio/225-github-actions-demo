@@ -1,0 +1,23 @@
+name: Test matrix with choice
+
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        type: choice
+        description: Make a choice
+        options:
+        - foo
+        - bar
+        - baz
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: test
+        run: |
+            echo "testing choice"
+            echo "${{ input.choice }}"
