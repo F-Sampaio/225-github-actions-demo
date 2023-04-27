@@ -17,9 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        foo: ['a1', 'a2']
-        bar: ['b1', 'b2']
-        baz: ['c1', 'c2']
+        include:
+          - choice: foo
+            cluster1: 'a1'
+            cluter2: 'a2'
+          - choice: bar
+            cluster1: 'b1'
+            cluter2: 'b2'
+          - choice: baz
+            cluster1: 'c1'
+            cluter2: 'c2'
     
     steps:
       - name: test
