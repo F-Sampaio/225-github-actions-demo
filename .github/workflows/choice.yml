@@ -18,6 +18,9 @@ jobs:
    strategy:
       matrix:
         choice: ['foo1', 'foo2']
-        run: |
-            echo "testing choice"
+        
+   steps:
+    - name: test
+      run: |
+            echo "testing matrix"
             echo "${{ matrix.choice }}"
