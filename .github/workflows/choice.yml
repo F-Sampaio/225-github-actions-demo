@@ -9,35 +9,24 @@ on:
         options:
         - foo
         - bar
-        - baz
 
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    strategy:
+  job:
+   runs-on: ubuntu-latest
+   if: github.event.inputs.choice == 'foo'
+   strategy:
       matrix:
-        include:
-          - choice: foo
-            cluster1: 'a1'
-            cluter2: 'a2'
-          - choice: bar
-            cluster1: 'b1'
-            cluter2: 'b2'
-          - choice: baz
-            cluster1: 'c1'
-            cluter2: 'c2'
-    
-    steps:
-      - name: test
+        choice: ['foo1', 'foo2']
         run: |
             echo "testing choice"
-            if [[ ${{ inputs.choice }} == "foo" ]]; then
-              echo "${{ matrix.foo }}"
-            fi
-            if [[ ${{ inputs.choice }} == "bar" ]]; then
-              echo "${{ matrix.bar }}"
-            fi
-            if [[ ${{ inputs.choice }} == "baz" ]]; then
-              echo "${{ matrix.baz }}"
-            fi
+            echo "${{ matrix.choice }}"
+  job2:
+   runs-on: ubuntu-latest        
+   if: github.event.inputs.choice == 'bar'
+   strategy:
+      matrix:
+        choice: ['bar', 'bar']
+        run: |
+            echo "testing choice"
+            echo "${{ matrix.choice }}"
