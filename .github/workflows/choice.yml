@@ -15,17 +15,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        foo: ['a1', 'a2']
+        bar: ['b1', 'b2']
+        baz: ['c1', 'c2']
     
     steps:
       - name: test
         run: |
             echo "testing choice"
             if [[ ${{ inputs.choice }} == "foo" ]]; then
-              echo "choose foo"
+              echo "${{ matrix.foo }}"
             fi
             if [[ ${{ inputs.choice }} == "bar" ]]; then
-              echo "choose bar"
+              echo "${{ matrix.bar }}"
             fi
             if [[ ${{ inputs.choice }} == "baz" ]]; then
-              echo "choose baz"
+              echo "${{ matrix.baz }}"
             fi
