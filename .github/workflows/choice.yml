@@ -24,3 +24,16 @@ jobs:
       run: |
             echo "testing matrix"
             echo "${{ matrix.choice }}"
+  job2:
+   runs-on: ubuntu-latest
+   if: github.event.inputs.choice == 'bar'
+   strategy:
+      matrix:
+        choice: ['bar1', 'bar2']
+        
+   steps:
+    - name: test
+      run: |
+            echo "testing matrix"
+            echo "${{ matrix.choice }}"
+            
